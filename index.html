@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+        <title>KNN Interactive</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header></header>
+        <main>
+            <div class="row">
+                <div class="col s2">
+                    <div class="collection">
+                        <div class="container">
+                            <div class="">
+                                <h4 class="center-align">
+                                    K Nearest Neightbor Interactive Example
+                                </h4>
+                            </div>
+                            <div class="">
+                                <label for="k">K</label>
+                                <input
+                                    type="number"
+                                    step="1"
+                                    value="2"
+                                    id="k"
+                                    min="1"
+                                    onchange="updateBoard()"
+                                />
+                            </div>
+                            <div class="">
+                                <label for="class">Class</label>
+                                <input
+                                    type="number"
+                                    step="1"
+                                    value="1"
+                                    id="class"
+                                    min="1"
+                                    onchange="updateNumberBgColor()"
+                                    style="background-color: rgba(255, 0, 0, 0.5);"
+                                />
+                            </div>
+                            <div class="section">
+                                <div class="switch">
+                                    <label>
+                                        Circle
+                                        <input
+                                            type="checkbox"
+                                            class="filled-in"
+                                            checked="checked"
+                                            id="circle"
+                                            onchange="updateBoard()"
+                                        /><span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <div class="switch">
+                                    <label>
+                                        Voronoi
+                                        <input
+                                            type="checkbox"
+                                            id="voronoi"
+                                            onchange="updateBoard()"
+                                        /><span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s10">
+                    <div id="canvas-div" class="section">
+                        <canvas
+                            id="myCanvas"
+                            width="300"
+                            height="300"
+                            style="border: 1px solid rgb(0, 0, 0); cursor: crosshair;"
+                        >
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="page-footer black">
+            <div class="valign-wrapper">
+                A bug-fixed and simplified version of an interactive example web
+                app by
+                <a
+                    href="https://martin-thoma.com/k-nearest-neighbor-classification-interactive-example/"
+                    >Martin Thoma
+                </a>
+            </div>
+        </footer>
+        <script type="text/javascript" src="./app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+/* #myCanvas {
+    width: 100vh;
+    height: 100vh;
+} */
+
+label {
+    font-size: larger;
+}
+
+input[type='number'] {
+    font-weight: bold;
+    text-align: center;
+}
