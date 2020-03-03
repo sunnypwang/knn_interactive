@@ -91,9 +91,8 @@ function drawBoard(canvas, mouseCoords, radius) {
     // context.canvas.height = window.innerHeight - 50
     // context.canvas.style.width = 100
     // context.canvas.style.height = 100
-    context.canvas.width = window.innerWidth - 300
+    context.canvas.width = window.innerWidth - 250
     context.canvas.height = window.innerHeight - 100
-    console.log(document.getElementById('canvas-div').offsetWidth)
     context.clearRect(0, 0, canvas.width, canvas.height)
     if (document.getElementById('voronoi').checked) {
         // var add = parseInt(document.getElementById("density").value);
@@ -137,9 +136,7 @@ function drawBoard(canvas, mouseCoords, radius) {
 }
 
 /** permanently add a point */
-function addPoint(event, canvas, mouseCoords, radius) {
-    updateBoard()
-
+function addPoint(x, y, radius) {
     pointCluster = parseInt(document.getElementById('class').value)
 
     if (pointCluster > maxKnearestNeighborClasses) {
@@ -147,8 +144,8 @@ function addPoint(event, canvas, mouseCoords, radius) {
     }
 
     points.push({
-        x: mouseCoords['x'],
-        y: mouseCoords['y'],
+        x: x,
+        y: y,
         radius: radius,
         cluster: pointCluster,
         class: pointCluster
@@ -220,8 +217,8 @@ setCursorByID('myCanvas', 'crosshair')
 /** event listeners */
 canvas.addEventListener(
     'mousemove',
-    function(evt) {
-        var mouseCoords = getMouseCoords(canvas, evt)
+    function(e) {
+        var mouseCoords = getMouseCoords(canvas, e)
         drawBoard(canvas, mouseCoords, INITIAL_RADIUS)
     },
     false
@@ -229,9 +226,27 @@ canvas.addEventListener(
 
 canvas.addEventListener(
     'mousedown',
-    function(event) {
-        var mouseCoords = getMouseCoords(canvas, event)
-        addPoint(event, canvas, mouseCoords, POINT_RADIUS)
+    function(e) {
+        var mouseCoords = getMouseCoords(canvas, e)
+        addPoint(mouseCoords['x'], mouseCoords['y'], POINT_RADIUS)
+        drawBoard(canvas, mouseCoords, INITIAL_RADIUS)
     },
     false
 )
+
+function getRandomInt(max, min = 0) {
+    return Math.floor(Math.random() * Math.floor(max)) + min
+}
+
+function generatePoints() {
+    console.log('gen points')
+    var w = canvas.width
+    var h = canvas.height
+    var off = 10
+
+    var x = getRandomInt(w - off, (min = 10))
+    var y = getRandomInt(h - off, (min = 10))
+
+    addPoint(x, y, POINT_RADIUS)
+    updateBoard()
+}
